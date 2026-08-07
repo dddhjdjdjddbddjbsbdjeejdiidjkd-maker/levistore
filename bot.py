@@ -4,7 +4,7 @@ import subprocess
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# توكين البوت الرئيسي
+
 API_TOKEN ="8782381961:AAHIhHGlQbBuRMMWSLbZxo5XzvojJQp9oO8"
 bot = telebot.TeleBot(API_TOKEN)
 
