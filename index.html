@@ -16,8 +16,6 @@
 }
 body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;
   min-height:100vh;max-width:430px;margin:0 auto;overflow-x:hidden;}
-
-/* HEADER */
 .header{position:sticky;top:0;z-index:100;background:var(--bg);
   border-bottom:1px solid var(--border);padding:12px 16px;}
 .hrow{display:flex;align-items:center;gap:8px;}
@@ -41,8 +39,6 @@ body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;
 .bot-btn:active{opacity:.8;}
 .bname{flex:1;text-align:right;font-weight:500;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap;}
-
-/* PERIOD */
 .period-row{display:flex;align-items:center;gap:10px;padding:14px 16px 8px;}
 .ptabs{display:flex;background:var(--card2);border:1px solid var(--border);
   border-radius:10px;padding:3px;gap:2px;}
@@ -53,8 +49,6 @@ body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;
 .demo-tag{margin-right:auto;padding:5px 11px;border-radius:8px;
   border:1.5px solid var(--gold);color:var(--gold);font-size:11px;
   font-weight:700;background:rgba(255,215,64,.04);white-space:nowrap;}
-
-/* CARDS */
 .cards{padding:8px 14px 32px;display:flex;flex-direction:column;gap:12px;}
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;
   padding:18px 18px 0;overflow:hidden;transition:border-color .2s;}
@@ -72,17 +66,12 @@ body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;
   border-radius:6px;font-size:12px;font-weight:700;margin-top:5px;}
 .cbadge.dn{background:rgba(255,71,87,.12);color:var(--red);}
 .cbadge.up{background:rgba(0,230,118,.12);color:var(--green);}
-canvas.chart{margin:10px -18px 0;height:75px!important;
-  width:calc(100% + 36px)!important;display:block;}
-
-/* EMPTY STATE */
+canvas.chart{margin:10px -18px 0;height:75px!important;width:calc(100% + 36px)!important;display:block;}
 .no-bot{display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:70px 20px;text-align:center;color:var(--muted2);}
 .no-bot-icon{font-size:60px;margin-bottom:16px;opacity:.4;}
 .no-bot-title{font-size:19px;font-weight:700;color:var(--text);margin-bottom:8px;}
 .no-bot-sub{font-size:14px;line-height:1.7;}
-
-/* SHEET OVERLAY */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;
   display:none;align-items:flex-end;backdrop-filter:blur(5px);}
 .overlay.open{display:flex;}
@@ -92,8 +81,6 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 18px;}
 .stitle{font-size:17px;font-weight:700;margin-bottom:16px;}
-
-/* BOT LIST */
 .bot-item{display:flex;align-items:center;padding:13px 0;
   border-bottom:1px solid var(--border);cursor:pointer;gap:12px;transition:opacity .15s;}
 .bot-item:active{opacity:.6;}
@@ -117,8 +104,6 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
   font-weight:600;cursor:pointer;transition:all .2s;}
 .add-btn:hover{background:rgba(0,217,255,.13);border-color:var(--cyan);}
 .add-btn:active{opacity:.75;}
-
-/* ADD FORM */
 .back-link{display:flex;align-items:center;gap:8px;color:var(--cyan);
   font-size:14px;font-weight:600;cursor:pointer;margin-bottom:18px;}
 .field{margin-bottom:14px;}
@@ -134,8 +119,6 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
   font-weight:700;cursor:pointer;margin-top:8px;transition:opacity .2s;}
 .save-btn:active{opacity:.8;}
 .err{border-color:var(--red)!important;}
-
-/* SETTINGS */
 .srow{display:flex;align-items:center;justify-content:space-between;
   padding:14px 0;border-bottom:1px solid var(--border);}
 .srow:last-child{border-bottom:none;}
@@ -148,11 +131,14 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
 .toggle.on::after{right:calc(100% - 21px);}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{animation:spin .8s linear infinite;}
+*{-webkit-tap-highlight-color:transparent;}
+button,.bot-btn,.bot-item,.add-btn,.back-link,.del-btn,.toggle,.ptab{
+  touch-action:manipulation;-webkit-user-select:none;user-select:none;}
+input{-webkit-user-select:text;user-select:text;}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="hrow">
     <button class="icon-btn" id="btn-settings">
@@ -178,7 +164,6 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
   </div>
 </div>
 
-<!-- PERIOD ROW -->
 <div class="period-row">
   <div class="ptabs">
     <button class="ptab" data-p="1D">1D</button>
@@ -189,10 +174,8 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
   <div class="demo-tag">بيانات تجريبية</div>
 </div>
 
-<!-- MAIN AREA -->
 <div id="area"></div>
 
-<!-- BOT PICKER OVERLAY -->
 <div class="overlay" id="bot-ov">
   <div class="sheet">
     <div class="handle"></div>
@@ -224,7 +207,6 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
   </div>
 </div>
 
-<!-- SETTINGS OVERLAY -->
 <div class="overlay" id="set-ov">
   <div class="sheet">
     <div class="handle"></div>
@@ -238,9 +220,8 @@ canvas.chart{margin:10px -18px 0;height:75px!important;
 </div>
 
 <script>
-// STORAGE
 const LS = {
-  bots:   () => { try { return JSON.parse(localStorage.getItem('dash_bots')||'[]'); } catch { return []; } },
+  bots:   () => { try{return JSON.parse(localStorage.getItem('dash_bots')||'[]');}catch{return[];} },
   save:   b  => localStorage.setItem('dash_bots', JSON.stringify(b)),
   selId:  () => localStorage.getItem('dash_sel') || '',
   setSel: id => localStorage.setItem('dash_sel', id),
@@ -248,32 +229,27 @@ const LS = {
 };
 
 function addBot(name, username, token) {
-  const bots = LS.bots(), id = 'b'+Date.now();
-  bots.push({ id, name, username, token });
-  LS.save(bots); return id;
+  const bots=LS.bots(), id='b'+Date.now();
+  bots.push({id,name,username,token}); LS.save(bots); return id;
 }
 function delBot(id) {
   LS.save(LS.bots().filter(b=>b.id!==id));
-  if(LS.selId()===id){ LS.setSel(''); updateHeader(null); renderArea(); }
+  if(LS.selId()===id){LS.setSel('');updateHeader(null);renderArea();}
 }
-
-// HEADER
 function updateHeader(bot) {
   document.getElementById('dot').className    = 'dot'+(bot?' on':'');
   document.getElementById('stxt').textContent = bot?'متصل':'غير متصل';
   document.getElementById('bname').textContent= bot?bot.name:'— اختر بوت —';
 }
-
-// BOT LIST
-function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 function renderBotItems() {
-  const bots=LS.bots(), selId=LS.selId(), el=document.getElementById('bot-items');
-  if(!bots.length){ el.innerHTML='<div class="empty-bots"><div style="font-size:40px;margin-bottom:10px">🤖</div>لا يوجد بوتات محفوظة بعد</div>'; return; }
+  const bots=LS.bots(),selId=LS.selId(),el=document.getElementById('bot-items');
+  if(!bots.length){el.innerHTML='<div class="empty-bots"><div style="font-size:40px;margin-bottom:10px">🤖</div>لا يوجد بوتات محفوظة بعد</div>';return;}
   el.innerHTML='';
   bots.forEach(bot=>{
     const item=document.createElement('div');
-    item.className='bot-item'; item.dataset.id=bot.id;
+    item.className='bot-item';item.dataset.id=bot.id;
     item.innerHTML=`
       <div class="radio ${bot.id===selId?'on':''}"></div>
       <div class="bitem-info">
@@ -285,101 +261,94 @@ function renderBotItems() {
   });
 }
 
-document.getElementById('bot-items').addEventListener('click', e=>{
-  const del=e.target.closest('.del-btn'), item=e.target.closest('.bot-item');
-  if(del){ e.stopPropagation(); const id=del.dataset.id, name=LS.bots().find(b=>b.id===id)?.name||''; if(confirm(`حذف "${name}"؟`)){ delBot(id); renderBotItems(); } return; }
-  if(item){ LS.setSel(item.dataset.id); updateHeader(LS.selBot()); closeBotOv(); renderArea(); }
+document.getElementById('bot-items').addEventListener('click',e=>{
+  const del=e.target.closest('.del-btn'),item=e.target.closest('.bot-item');
+  if(del){e.stopPropagation();const id=del.dataset.id,name=LS.bots().find(b=>b.id===id)?.name||'';if(confirm(`حذف "${name}"؟`)){delBot(id);renderBotItems();}return;}
+  if(item){LS.setSel(item.dataset.id);updateHeader(LS.selBot());closeBotOv();renderArea();}
 });
 
-function openBotOv(){ renderBotItems(); document.getElementById('list-view').style.display='block'; document.getElementById('add-view').style.display='none'; document.getElementById('bot-ov').classList.add('open'); }
-function closeBotOv(){ document.getElementById('bot-ov').classList.remove('open'); }
+function openBotOv(){renderBotItems();document.getElementById('list-view').style.display='block';document.getElementById('add-view').style.display='none';document.getElementById('bot-ov').classList.add('open');}
+function closeBotOv(){document.getElementById('bot-ov').classList.remove('open');}
 
-document.getElementById('bot-btn').addEventListener('click', openBotOv);
-document.getElementById('bot-ov').addEventListener('click', e=>{ if(e.target===document.getElementById('bot-ov')) closeBotOv(); });
+document.getElementById('bot-btn').addEventListener('click',openBotOv);
+document.getElementById('bot-ov').addEventListener('click',e=>{if(e.target===document.getElementById('bot-ov'))closeBotOv();});
 
-document.getElementById('go-add').addEventListener('click', ()=>{
-  ['inp-name','inp-token','inp-user'].forEach(i=>{ document.getElementById(i).value=''; document.getElementById(i).classList.remove('err'); });
+document.getElementById('go-add').addEventListener('click',()=>{
+  ['inp-name','inp-token','inp-user'].forEach(i=>{document.getElementById(i).value='';document.getElementById(i).classList.remove('err');});
   document.getElementById('add-err').style.display='none';
   document.getElementById('list-view').style.display='none';
   document.getElementById('add-view').style.display='block';
   setTimeout(()=>document.getElementById('inp-name').focus(),150);
 });
 
-document.getElementById('go-back').addEventListener('click', ()=>{
+document.getElementById('go-back').addEventListener('click',()=>{
   document.getElementById('add-view').style.display='none';
   document.getElementById('list-view').style.display='block';
 });
 
-document.getElementById('do-save').addEventListener('click', ()=>{
+document.getElementById('do-save').addEventListener('click',()=>{
   const name=(document.getElementById('inp-name').value||'').trim();
   const token=(document.getElementById('inp-token').value||'').trim();
   const user=(document.getElementById('inp-user').value||'').trim();
   const errEl=document.getElementById('add-err');
-  const showErr=(msg)=>{ errEl.textContent=msg; errEl.style.display='block'; };
-
-  if(!name){ document.getElementById('inp-name').classList.add('err'); document.getElementById('inp-name').focus(); showErr('⚠️ اسم البوت مطلوب'); setTimeout(()=>document.getElementById('inp-name').classList.remove('err'),2000); return; }
-  if(!token||!token.includes(':')){ document.getElementById('inp-token').classList.add('err'); document.getElementById('inp-token').focus(); showErr('⚠️ التوكن غير صحيح'); setTimeout(()=>document.getElementById('inp-token').classList.remove('err'),2000); return; }
-
-  const id=addBot(name, user?(user.startsWith('@')?user:'@'+user):'', token);
-  LS.setSel(id); updateHeader(LS.selBot()); closeBotOv(); renderArea();
+  const showErr=msg=>{errEl.textContent=msg;errEl.style.display='block';};
+  if(!name){document.getElementById('inp-name').classList.add('err');document.getElementById('inp-name').focus();showErr('⚠️ اسم البوت مطلوب');setTimeout(()=>document.getElementById('inp-name').classList.remove('err'),2000);return;}
+  if(!token||!token.includes(':')){document.getElementById('inp-token').classList.add('err');document.getElementById('inp-token').focus();showErr('⚠️ التوكن غير صحيح');setTimeout(()=>document.getElementById('inp-token').classList.remove('err'),2000);return;}
+  const id=addBot(name,user?(user.startsWith('@')?user:'@'+user):'',token);
+  LS.setSel(id);updateHeader(LS.selBot());closeBotOv();renderArea();
 });
 
-// SETTINGS
 document.getElementById('btn-settings').addEventListener('click',()=>document.getElementById('set-ov').classList.add('open'));
-document.getElementById('set-ov').addEventListener('click',e=>{ if(e.target===document.getElementById('set-ov')) document.getElementById('set-ov').classList.remove('open'); });
+document.getElementById('set-ov').addEventListener('click',e=>{if(e.target===document.getElementById('set-ov'))document.getElementById('set-ov').classList.remove('open');});
 
-// REFRESH
 document.getElementById('btn-refresh').addEventListener('click',()=>{
   document.getElementById('ricon').classList.add('spin');
   setTimeout(()=>document.getElementById('ricon').classList.remove('spin'),800);
   renderArea();
 });
 
-// PERIOD TABS
 let period='7D';
 document.querySelectorAll('.ptab').forEach(btn=>{
   btn.addEventListener('click',()=>{
     period=btn.dataset.p;
     document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active'); renderArea();
+    btn.classList.add('active');renderArea();
   });
 });
 
-// METRICS
 const METRICS=[
-  {key:'active',  label:'النشطين',       icon:'⚡',cls:'c1',base:19,  chg:-96,color:'#00D9FF',trend:'down'},
-  {key:'users',   label:'المستخدمين',    icon:'👥',cls:'c2',base:593, chg:-55,color:'#63B3ED',trend:'wave'},
-  {key:'msgs',    label:'الرسائل',       icon:'💬',cls:'c3',base:2840,chg:12, color:'#A78BFA',trend:'up'},
-  {key:'acts',    label:'النشاطات',      icon:'🔥',cls:'c4',base:1240,chg:8,  color:'#FFA500',trend:'up'},
-  {key:'banned',  label:'المحظورين',     icon:'🚫',cls:'c5',base:12,  chg:-30,color:'#FF4757',trend:'down'},
-  {key:'sessions',label:'الجلسات',       icon:'🔗',cls:'c6',base:441, chg:5,  color:'#00E676',trend:'stable'},
+  {key:'active',  label:'النشطين',   icon:'⚡',cls:'c1',base:19,  chg:-96,color:'#00D9FF',trend:'down'},
+  {key:'users',   label:'المستخدمين',icon:'👥',cls:'c2',base:593, chg:-55,color:'#63B3ED',trend:'wave'},
+  {key:'msgs',    label:'الرسائل',   icon:'💬',cls:'c3',base:2840,chg:12, color:'#A78BFA',trend:'up'},
+  {key:'acts',    label:'النشاطات',  icon:'🔥',cls:'c4',base:1240,chg:8,  color:'#FFA500',trend:'up'},
+  {key:'banned',  label:'المحظورين', icon:'🚫',cls:'c5',base:12,  chg:-30,color:'#FF4757',trend:'down'},
+  {key:'sessions',label:'الجلسات',   icon:'🔗',cls:'c6',base:441, chg:5,  color:'#00E676',trend:'stable'},
 ];
-const PTS={1D:24,'7D':7,'30D':30,'90D':90};
+const PTS ={'1D':24,'7D':7,'30D':30,'90D':90};
 const MULT={'1D':.25,'7D':1,'30D':3.5,'90D':10};
 let charts={};
 
 function genSeries(m,p){
-  const n=PTS[p]||7, base=m.base*(MULT[p]||1);
+  const n=PTS[p]||7,base=m.base*(MULT[p]||1);
   const bias=m.trend==='up'?.52:m.trend==='down'?.48:.505;
   let v=base,vals=[];
-  for(let i=0;i<n;i++){ v+=(Math.random()-bias)*base*.13; v=Math.max(base*.25,Math.min(base*1.75,v)); vals.push(+v.toFixed(1)); }
+  for(let i=0;i<n;i++){v+=(Math.random()-bias)*base*.13;v=Math.max(base*.25,Math.min(base*1.75,v));vals.push(+v.toFixed(1));}
   return vals;
 }
-function fmt(v){ if(v>=1e6)return(v/1e6).toFixed(1)+'M'; if(v>=1000)return(v/1000).toFixed(1)+'k'; return Math.round(v)+''; }
+function fmt(v){if(v>=1e6)return(v/1e6).toFixed(1)+'M';if(v>=1000)return(v/1000).toFixed(1)+'k';return Math.round(v)+''}
 
 function renderArea(){
-  const area=document.getElementById('area'), bot=LS.selBot();
+  const area=document.getElementById('area'),bot=LS.selBot();
   if(!bot){
-    area.innerHTML=`<div class="no-bot"><div class="no-bot-icon">🤖</div><div class="no-bot-title">لم يتم اختيار بوت</div><div class="no-bot-sub">اضغط على "اختر بوت" في الأعلى<br>لإضافة بوتك أو اختيار بوت محفوظ</div></div>`;
-    Object.values(charts).forEach(c=>{try{c.destroy();}catch{}}); charts={}; return;
+    area.innerHTML='<div class="no-bot"><div class="no-bot-icon">🤖</div><div class="no-bot-title">لم يتم اختيار بوت</div><div class="no-bot-sub">اضغط على "اختر بوت" في الأعلى<br>لإضافة بوتك أو اختيار بوت محفوظ</div></div>';
+    Object.values(charts).forEach(c=>{try{c.destroy();}catch{}});charts={};return;
   }
   area.innerHTML='<div class="cards" id="cards"></div>';
   const container=document.getElementById('cards');
-  Object.values(charts).forEach(c=>{try{c.destroy();}catch{}}); charts={};
-
+  Object.values(charts).forEach(c=>{try{c.destroy();}catch{}});charts={};
   METRICS.forEach(m=>{
-    const data=genSeries(m,period), cur=data[data.length-1], up=m.chg>=0;
-    const card=document.createElement('div'); card.className='card';
+    const data=genSeries(m,period),cur=data[data.length-1],up=m.chg>=0;
+    const card=document.createElement('div');card.className='card';
     card.innerHTML=`
       <div class="card-top">
         <div class="cicon ${m.cls}">${m.icon}</div>
@@ -392,18 +361,17 @@ function renderArea(){
       <canvas class="chart" id="cv-${m.key}"></canvas>`;
     container.appendChild(card);
     requestAnimationFrame(()=>{
-      const cv=document.getElementById('cv-'+m.key); if(!cv)return;
-      cv.width=(container.clientWidth-28)+36; cv.height=75;
-      const ctx=cv.getContext('2d'), grad=ctx.createLinearGradient(0,0,0,75);
-      grad.addColorStop(0,m.color+'44'); grad.addColorStop(1,m.color+'00');
+      const cv=document.getElementById('cv-'+m.key);if(!cv)return;
+      cv.width=(container.clientWidth-28)+36;cv.height=75;
+      const ctx=cv.getContext('2d'),grad=ctx.createLinearGradient(0,0,0,75);
+      grad.addColorStop(0,m.color+'44');grad.addColorStop(1,m.color+'00');
       charts[m.key]=new Chart(ctx,{type:'line',data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:m.color,borderWidth:2,fill:true,backgroundColor:grad,tension:.45,pointRadius:0}]},options:{responsive:false,maintainAspectRatio:false,animation:{duration:700,easing:'easeInOutQuart'},plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}});
     });
   });
 }
 
-// INIT
 updateHeader(LS.selBot());
 renderArea();
 </script>
 </body>
-</html>
+  </html>
