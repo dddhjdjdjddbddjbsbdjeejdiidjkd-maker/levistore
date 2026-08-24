@@ -1,6 +1,0 @@
-python-telegram-bot
-pyTelegramBotAPI
-requests
-aiohttp
-pillow
-beautifulsoup4
